@@ -1,5 +1,5 @@
 {
-  "name": "vite-plugin-collector",
+  "name": "vite-plugin-collection",
   "version": "0.1.0",
   "description": "The file based markdown collection for Vue 3 apps using Vite.",
   "main": "dist/index.js",
@@ -14,10 +14,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ycs77/vite-plugin-collector.git"
+    "url": "https://github.com/ycs77/vite-plugin-collection.git"
   },
-  "homepage": "https://github.com/ycs77/vite-plugin-collector",
-  "bugs": "https://github.com/ycs77/vite-plugin-collector/issues",
+  "homepage": "https://github.com/ycs77/vite-plugin-collection",
+  "bugs": "https://github.com/ycs77/vite-plugin-collection/issues",
   "dependencies": {},
   "devDependencies": {}
 }
