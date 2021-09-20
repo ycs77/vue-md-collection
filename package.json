@@ -1,23 +1,53 @@
 {
-  "name": "vite-plugin-collection",
+  "name": "vite-plugin-vue-collection",
   "version": "0.1.0",
-  "description": "The file based markdown collection for Vue 3 apps using Vite.",
+  "description": "The file based markdown collection for Vue 3 apps in Vite.",
   "main": "dist/index.js",
-  "scripts": {
-    "dev": "cross-env NODE_ENV=development rollup -c",
-    "watch": "cross-env NODE_ENV=development rollup -c -w",
-    "build": "cross-env NODE_ENV=production rollup -c",
-    "compress": "uglifyjs dist/jquery.bsmodal.js -o dist/jquery.bsmodal.min.js -c -m --comments /^!/",
-    "release": "npm run build && npm run compress"
-  },
+  "module": "dist/index.mjs",
+  "types": "index.d.ts",
   "author": "Lucas Yang <yangchenshin77@gmail.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ycs77/vite-plugin-collection.git"
+    "url": "https://github.com/ycs77/vite-plugin-vue-collection.git",
+    "directory": "packages/vite-plugin"
   },
-  "homepage": "https://github.com/ycs77/vite-plugin-collection",
-  "bugs": "https://github.com/ycs77/vite-plugin-collection/issues",
-  "dependencies": {},
-  "devDependencies": {}
+  "homepage": "https://github.com/ycs77/vite-plugin-vue-collection",
+  "bugs": "https://github.com/ycs77/vite-plugin-vue-collection/issues",
+  "files": [
+    "dist",
+    "client.d.ts",
+    "index.d.ts"
+  ],
+  "scripts": {
+    "dev": "npm-run-all --parallel dev:node dev:client",
+    "dev:node": "npm run build:node -- --watch --ignore-watch dist",
+    "dev:client": "npm run build:client -- --watch --ignore-watch dist",
+    "build": "npm-run-all build:node build:client",
+    "build:node": "tsup src/index.ts --dts --format cjs,esm",
+    "build:client": "tsup src/client/index.ts --external vue --format esm -d dist/client",
+    "example": "yarn --cwd ./example"
+  },
+  "dependencies": {
+    "@vue/compiler-sfc": "^3.1.1",
+    "debug": "^4.3.1",
+    "fast-glob": "^3.2.5",
+    "fs-extra": "^10.0.0",
+    "gray-matter": "^4.0.3"
+  },
+  "devDependencies": {
+    "@types/debug": "^4.1.5",
+    "@types/fs-extra": "^9.0.11",
+    "@types/node": "^15.12.1",
+    "npm-run-all": "^4.1.5",
+    "rollup": "^2.51.0",
+    "tsup": "^4.11.2",
+    "typescript": "^4.3.2",
+    "vite": "^2.3.6",
+    "vue": "^3.1.0"
+  },
+  "peerDependencies": {
+    "vite": "^2.0.0",
+    "vue": "^3.0.0"
+  }
 }
